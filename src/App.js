@@ -1,24 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import CreatePost from "./components/CreatePost";
+import Nav from "./components/Nav";
+import PostDetail from "./components/PostDetail";
+import Home from "./Home";
 
 function App() {
+  const [posts, setPosts] = useState(null);
+  const [isPending, setIsPending] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetch("http://localhost:3001/posts")
+      .then((res) => {
+        // if (!res.ok) throw Error("Failed to fetch data");
+        return res.json();
+      })
+      .then((data) => {
+        // console.log(data);
+        setIsPending(false);
+        setPosts(data);
+        setError(null);
+      })
+      .catch((err) => {
+        setIsPending(false);
+        setError(err.message);
+      });
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Nav />
+      <Routes>
+        <Route exact path="/" element={<Home posts={posts} />} />
+        <Route
+          exact
+          path="/create"
+          element={<CreatePost posts={posts} setPosts={setPosts} />}
+        />
+        <Route
+          exact
+          path="/posts/:id"
+          element={<PostDetail data={posts} setData={setPosts} />}
+        />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

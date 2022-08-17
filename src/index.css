@@ -1,13 +1,91 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  padding: 0;
+  box-sizing: border-box;
+  border: 0;
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+button {
+  outline: 0;
+  background: none;
+}
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0px 100px;
+}
+.post-btn {
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 1rem;
+  padding: 5px 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+.nav-right {
+  padding-right: 1rem;
+}
+.post-info {
+  padding: 65px 10px;
+  border-bottom: 1px solid gray;
+}
+.post-subinfo {
+  display: flex;
+  align-items: center;
+  margin-top: 16px;
+}
+.post-subinfo * {
+  margin-right: 10px;
+}
+.create-post > form {
+  display: flex;
+  flex-direction: column;
+
+  margin: 2rem 0;
+}
+textarea {
+  height: 250px;
+}
+/* PostDetail */
+.post-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5.5rem;
+}
+.detail-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 768px;
+  margin: 4rem 0;
+  font-size: 1rem;
+}
+.wrapper-left {
+  display: flex;
+}
+.wrapper-left-author {
+  margin-right: 10px;
+}
+.wrapper-right > button {
+  margin-right: 1rem;
+  background-color: none;
+  font-size: 1rem;
+  cursor: pointer;
 }
